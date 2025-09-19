@@ -11,7 +11,6 @@
       padding: 20px;
       margin: 0;
     }
-    /* 🌟 Department Heading Styling */
     h2 {
       font-size: 26px;
       font-weight: bold;
@@ -27,10 +26,7 @@
       from { text-shadow: 0 0 10px #fff, 0 0 20px #ff0080, 0 0 30px #00c6ff; }
       to { text-shadow: 0 0 20px #fff, 0 0 30px #ff6a00, 0 0 40px #0072ff; }
     }
-    h1 {
-      color: #2c3e50;
-      animation: fadeIn 2s ease-in-out;
-    }
+    h1 { color: #2c3e50; animation: fadeIn 2s ease-in-out; }
     select {
       padding: 10px;
       font-size: 16px;
@@ -43,52 +39,58 @@
       max-width: 700px;
       margin: 20px auto;
       border-collapse: collapse;
-      background: white;
       border-radius: 10px;
       overflow: hidden;
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
       display: none;
-      animation: slideIn 1s ease-in-out;
+      background: linear-gradient(-45deg, #ffffff, #f1f1f1, #e0f7fa, #f9f9f9);
+      background-size: 600% 600%;
+      animation: gradientBG 12s ease infinite;
+      transition: opacity 0.7s ease;
     }
     th, td {
       padding: 12px;
       border: 1px solid #ddd;
       text-align: center;
       font-size: 16px;
+      backdrop-filter: blur(4px);
     }
-    th {
-      background: #3498db;
-      color: white;
+    th { background: #3498db; color: white; }
+    tr:nth-child(even) { background: rgba(255,255,255,0.3); }
+
+    @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      25% {background-position: 50% 100%;}
+      50% {background-position: 100% 50%;}
+      75% {background-position: 50% 0%;}
+      100% {background-position: 0% 50%;}
     }
-    tr:nth-child(even) {
-      background: #f9f9f9;
-    }
-    .high { background-color: #c8f7c5; } /* Green for >=25 */
-    .mid  { background-color: #ffeaa7; } /* Orange for 20-24 */
-    .low  { background-color: #fab1a0; } /* Red for <20 */
-    @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
-    }
-    @keyframes slideIn {
-      from {transform: translateY(20px); opacity: 0;}
-      to {transform: translateY(0); opacity: 1;}
-    }
-    /* Mobile Responsive */
+
+    /* Pulsing for Remarks text */
+    @keyframes pulseGreenText { 0% {text-shadow:0 0 2px green;} 50% {text-shadow:0 0 12px green;} 100% {text-shadow:0 0 2px green;} }
+    @keyframes pulseOrangeText { 0% {text-shadow:0 0 2px orange;} 50% {text-shadow:0 0 12px orange;} 100% {text-shadow:0 0 2px orange;} }
+    @keyframes pulseRedText { 0% {text-shadow:0 0 2px red;} 50% {text-shadow:0 0 12px red;} 100% {text-shadow:0 0 2px red;} }
+    .pulse-green-text { animation: pulseGreenText 1.5s infinite; font-weight:bold; }
+    .pulse-orange-text { animation: pulseOrangeText 1.5s infinite; font-weight:bold; }
+    .pulse-red-text { animation: pulseRedText 1.5s infinite; font-weight:bold; }
+
+    /* Pulsing glow for entire row */
+    @keyframes glowGreenRow { 0% {background-color: rgba(200,247,197,0.5);} 50% {background-color: rgba(200,247,197,1);} 100% {background-color: rgba(200,247,197,0.5);} }
+    @keyframes glowOrangeRow { 0% {background-color: rgba(255,234,167,0.5);} 50% {background-color: rgba(255,234,167,1);} 100% {background-color: rgba(255,234,167,0.5);} }
+    @keyframes glowRedRow { 0% {background-color: rgba(250,177,160,0.5);} 50% {background-color: rgba(250,177,160,1);} 100% {background-color: rgba(250,177,160,0.5);} }
+    .pulse-green-row { animation: glowGreenRow 1.5s infinite; }
+    .pulse-orange-row { animation: glowOrangeRow 1.5s infinite; }
+    .pulse-red-row { animation: glowRedRow 1.5s infinite; }
+
     @media (max-width: 600px) {
-      th, td {
-        padding: 8px;
-        font-size: 14px;
-      }
-      select {
-        width: 90%;
-      }
+      th, td { padding: 8px; font-size: 14px; }
+      select { width: 90%; }
     }
   </style>
 </head>
 <body>
   <h2>Department of Artificial Intelligence and Data Science</h2>
-  
   <h1>📘 AID735PE - CRYPTOGRAPHY AND NETWORK SECURITY</h1>
   <h1>MID-I EXAMINATION - SEPTEMBER 2025</h1>
   <h1>Date of Exam: 10.09.2025</h1>
@@ -105,6 +107,7 @@
       <th>Objective (10)</th>
       <th>Descriptive (20)</th>
       <th>Total (30)</th>
+      <th>Remarks</th>
     </tr>
     <tr id="resultRow">
       <td id="sno"></td>
@@ -112,11 +115,11 @@
       <td id="obj"></td>
       <td id="desc"></td>
       <td id="total"></td>
+      <td id="remarks"></td>
     </tr>
   </table>
 
   <script>
-    // ✅ Register Numbers from 22K81A7265 to 23K85A7212
     const registerNumbers = [
       "22K81A7265","22K81A7266","22K81A7267","22K81A7268","22K81A7269",
       "22K81A7270","22K81A7271","22K81A7272","22K81A7273","22K81A7274",
@@ -130,11 +133,10 @@
       "22K81A72B0","22K81A72B1","22K81A72B2","22K81A72B3","22K81A72B4",
       "22K81A72B5","22K81A72B6","22K81A72B7","22K81A72B8","22K81A72B9",
       "22K81A72C0","22K81A72C1","22K81A72C2","22K81A72C4",
-       "22K81A72C6","22K81A72C7", "23K85A7207","23K85A7208","23K85A7209","23K85A7210",
+      "22K81A72C6","22K81A72C7", "23K85A7207","23K85A7208","23K85A7209","23K85A7210",
       "23K85A7211","23K85A7212"
     ];
 
-    // Populate dropdown
     const select = document.getElementById("regno");
     registerNumbers.forEach(num => {
       const option = document.createElement("option");
@@ -143,7 +145,6 @@
       select.appendChild(option);
     });
 
-    // ✅ Marks Data (Serial Numbers start from 1)
     const marksData = {
       "22K81A7265": {sno:1, obj:5.5, desc:1},
       "22K81A7266": {sno:2, obj:9, desc:20},
@@ -204,7 +205,7 @@
       "22K81A72C1": {sno:57, obj:6.5, desc:5},
       "22K81A72C2": {sno:58, obj:10, desc:20},
       "22K81A72C4": {sno:60, obj:10, desc:20},
-     "22K81A72C6": {sno:62, obj:10, desc:7},
+      "22K81A72C6": {sno:62, obj:10, desc:7},
       "22K81A72C7": {sno:63, obj:5, desc:16},
       "23K85A7207": {sno:71, obj:3.5, desc:13},
       "23K85A7208": {sno:72, obj:5.5, desc:12},
@@ -212,13 +213,13 @@
       "23K85A7210": {sno:74, obj:6.5, desc:18},
       "23K85A7211": {sno:75, obj:9, desc:19},
       "23K85A7212": {sno:76, obj:9, desc:17}
-     
     };
 
     function showMarks() {
       const regno = document.getElementById("regno").value;
       const table = document.getElementById("marksTable");
       const row = document.getElementById("resultRow");
+      const remarksCell = document.getElementById("remarks");
 
       if (regno && marksData[regno]) {
         const student = marksData[regno];
@@ -230,11 +231,23 @@
         document.getElementById("desc").innerText = student.desc;
         document.getElementById("total").innerText = total;
 
-        // Color coding
         row.className = "";
-        if (total >= 25) row.classList.add("high");
-        else if (total >= 20) row.classList.add("mid");
-        else row.classList.add("low");
+        remarksCell.className = "";
+        remarksCell.innerText = "";
+
+        if (total >= 24) {
+          row.classList.add("pulse-green-row");
+          remarksCell.innerText = "Excellent";
+          remarksCell.classList.add("pulse-green-text");
+        } else if (total >= 15) {
+          row.classList.add("pulse-orange-row");
+          remarksCell.innerText = "Satisfactory";
+          remarksCell.classList.add("pulse-orange-text");
+        } else {
+          row.classList.add("pulse-red-row");
+          remarksCell.innerText = "Needs Improvement";
+          remarksCell.classList.add("pulse-red-text");
+        }
 
         table.style.display = "table";
       } else {
@@ -244,3 +257,4 @@
   </script>
 </body>
 </html>
+

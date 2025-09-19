@@ -11,7 +11,7 @@
       padding: 20px;
       margin: 0;
     }
-/* 🌟 Department Heading Styling */
+    /* 🌟 Department Heading Styling */
     h2 {
       font-size: 26px;
       font-weight: bold;
@@ -23,13 +23,10 @@
       letter-spacing: 2px;
       animation: glow 2s infinite alternate, fadeInDown 2s;
     }
-
-    /* Glowing effect */
     @keyframes glow {
       from { text-shadow: 0 0 10px #fff, 0 0 20px #ff0080, 0 0 30px #00c6ff; }
       to { text-shadow: 0 0 20px #fff, 0 0 30px #ff6a00, 0 0 40px #0072ff; }
     }
-
     h1 {
       color: #2c3e50;
       animation: fadeIn 2s ease-in-out;
@@ -90,11 +87,11 @@
   </style>
 </head>
 <body>
-<h2>Department of Artificial Intelligence and Data Science</h2>
+  <h2>Department of Artificial Intelligence and Data Science</h2>
   
-  <h1>📘 AID735PE-CRYPTOGRAPHY AND NETWORK SECURITY<h1>
-    <h1>MID-I EXAMINATION-SEPTEMBER'2025 Marks</h1>
-    <h1>Date of Exam: 10.09.2025</h1>
+  <h1>📘 AID735PE - CRYPTOGRAPHY AND NETWORK SECURITY</h1>
+  <h1>MID-I EXAMINATION - SEPTEMBER 2025</h1>
+  <h1>Date of Exam: 10.09.2025</h1>
 
   <label for="regno"><b>Select Register Number:</b></label>
   <select id="regno" onchange="showMarks()">
@@ -119,25 +116,27 @@
   </table>
 
   <script>
-    // ✅ All 69 register numbers
+    // ✅ Register Numbers from 22K81A7265 to 23K85A7212
     const registerNumbers = [
-    "22K81A7265", "22K81A7266", "22K81A7267", "22K81A7268", "22K81A7269", "22K81A7270",    
-    "22K81A7271", "22K81A7272", "22K81A7273", "22K81A7274", "22K81A7275",    
-    "22K81A7276", "22K81A7277", "22K81A7278", "22K81A7279", "22K81A7280",    
-    "22K81A7281", "22K81A7282", "22K81A7283", "22K81A7284", "22K81A7285",    
-    "22K81A7286", "22K81A7287", "22K81A7288", "22K81A7289", "22K81A7290",    
-    "22K81A7291", "22K81A7292", "22K81A7293", "22K81A7294", "22K81A7295",    
-    "22K81A7296", "22K81A7297", "22K81A7298", "22K81A7299", "22K81A72A0",    
-    "22K81A72A1", "22K81A72A2", "22K81A72A3", "22K81A72A4", "22K81A72A5",    
-    "22K81A72A6", "22K81A72A7", "22K81A72A8", "22K81A72A9", "22K81A72B0",    
-    "22K81A72B1", "22K81A72B2", "22K81A72B3", "22K81A72B4", "22K81A72B5",    
-    "22K81A72B6", "22K81A72B7", "22K81A72B8", "22K81A72B9", "22K81A72C0",    
-    "22K81A72C1", "22K81A72C2", "22K81A72C3", "22K81A72C4", "22K81A72C5",    
-    "22K81A72C6", "22K81A72C7", "22K81A72C8", "23K85A7207", "23K85A7208", "23K85A7209", "23K85A7210",    
-    "23K85A7211", "23K85A7212"    
+      "22K81A7265","22K81A7266","22K81A7267","22K81A7268","22K81A7269",
+      "22K81A7270","22K81A7271","22K81A7272","22K81A7273","22K81A7274",
+      "22K81A7275","22K81A7276","22K81A7277","22K81A7278","22K81A7279",
+      "22K81A7280","22K81A7281","22K81A7282","22K81A7283","22K81A7284",
+      "22K81A7285","22K81A7286","22K81A7287","22K81A7288","22K81A7289",
+      "22K81A7290","22K81A7291","22K81A7292","22K81A7293","22K81A7294",
+      "22K81A7295","22K81A7296","22K81A7297","22K81A7298","22K81A7299",
+      "22K81A72A0","22K81A72A1","22K81A72A2","22K81A72A3","22K81A72A4",
+      "22K81A72A5","22K81A72A6","22K81A72A7","22K81A72A8","22K81A72A9",
+      "22K81A72B0","22K81A72B1","22K81A72B2","22K81A72B3","22K81A72B4",
+      "22K81A72B5","22K81A72B6","22K81A72B7","22K81A72B8","22K81A72B9",
+      "22K81A72C0","22K81A72C1","22K81A72C2","22K81A72C3","22K81A72C4",
+      "22K81A72C5","22K81A72C6","22K81A72C7","22K81A72C8",
+      "23K85A7201","23K85A7202","23K85A7203","23K85A7204","23K85A7205",
+      "23K85A7206","23K85A7207","23K85A7208","23K85A7209","23K85A7210",
+      "23K85A7211","23K85A7212"
     ];
 
-    // ✅ Populate dropdown
+    // Populate dropdown
     const select = document.getElementById("regno");
     registerNumbers.forEach(num => {
       const option = document.createElement("option");
@@ -146,79 +145,84 @@
       select.appendChild(option);
     });
 
-    // ✅ Marks Data (copied from your previous code, with serial number auto-added)
+    // ✅ Marks Data (Serial Numbers start from 1)
     const marksData = {
-  "22K81A7265": { sno: 1, obj:10, desc:20 },
-  "22K81A7266": { "sno": 2, "obj": "", "desc": "" },
-  "22K81A7267": { "sno": 3, "obj": "", "desc": "" },
-  "22K81A7268": { "sno": 4, "obj": "", "desc": "" },
-  "22K81A7269": { "sno": 5, "obj": "", "desc": "" },
-  "22K81A7270": { "sno": 6, "obj": "", "desc": "" },
-  "22K81A7271": { "sno": 7, "obj": "", "desc": "" },
-  "22K81A7272": { "sno": 8, "obj": "", "desc": "" },
-  "22K81A7273": { "sno": 9, "obj": "", "desc": "" },
-  "22K81A7274": { "sno": 10, "obj": "", "desc": "" },
-  "22K81A7275": { "sno": 11, "obj": "", "desc": "" },
-  "22K81A7276": { "sno": 12, "obj": "", "desc": "" },
-  "22K81A7277": { "sno": 13, "obj": "", "desc": "" },
-  "22K81A7278": { "sno": 14, "obj": "", "desc": "" },
-  "22K81A7279": { "sno": 15, "obj": "", "desc": "" },
-  "22K81A7280": { "sno": 16, "obj": "", "desc": "" },
-  "22K81A7281": { "sno": 17, "obj": "", "desc": "" },
-  "22K81A7282": { "sno": 18, "obj": "", "desc": "" },
-  "22K81A7283": { "sno": 19, "obj": "", "desc": "" },
-  "22K81A7284": { "sno": 20, "obj": "", "desc": "" },
-  "22K81A7285": { "sno": 21, "obj": "", "desc": "" },
-  "22K81A7286": { "sno": 22, "obj": "", "desc": "" },
-  "22K81A7287": { "sno": 23, "obj": "", "desc": "" },
-  "22K81A7288": { "sno": 24, "obj": "", "desc": "" },
-  "22K81A7289": { "sno": 25, "obj": "", "desc": "" },
-  "22K81A7290": { "sno": 26, "obj": "", "desc": "" },
-  "22K81A7291": { "sno": 27, "obj": "", "desc": "" },
-  "22K81A7292": { "sno": 28, "obj": "", "desc": "" },
-  "22K81A7293": { "sno": 29, "obj": "", "desc": "" },
-  "22K81A7294": { "sno": 30, "obj": "", "desc": "" },
-  "22K81A7295": { "sno": 31, "obj": "", "desc": "" },
-  "22K81A7296": { "sno": 32, "obj": "", "desc": "" },
-  "22K81A7297": { "sno": 33, "obj": "", "desc": "" },
-  "22K81A7298": { "sno": 34, "obj": "", "desc": "" },
-  "22K81A7299": { "sno": 35, "obj": "", "desc": "" },
-  "22K81A72A0": { "sno": 36, "obj": "", "desc": "" },
-  "22K81A72A1": { "sno": 37, "obj": "", "desc": "" },
-  "22K81A72A2": { "sno": 38, "obj": "", "desc": "" },
-  "22K81A72A3": { "sno": 39, "obj": "", "desc": "" },
-  "22K81A72A4": { "sno": 40, "obj": "", "desc": "" },
-  "22K81A72A5": { "sno": 41, "obj": "", "desc": "" },
-  "22K81A72A6": { "sno": 42, "obj": "", "desc": "" },
-  "22K81A72A7": { "sno": 43, "obj": "", "desc": "" },
-  "22K81A72A8": { "sno": 44, "obj": "", "desc": "" },
-  "22K81A72A9": { "sno": 45, "obj": "", "desc": "" },
-  "22K81A72B0": { "sno": 46, "obj": "", "desc": "" },
-  "22K81A72B1": { "sno": 47, "obj": "", "desc": "" },
-  "22K81A72B2": { "sno": 48, "obj": "", "desc": "" },
-  "22K81A72B3": { "sno": 49, "obj": "", "desc": "" },
-  "22K81A72B4": { "sno": 50, "obj": "", "desc": "" },
-  "22K81A72B5": { "sno": 51, "obj": "", "desc": "" },
-  "22K81A72B6": { "sno": 52, "obj": "", "desc": "" },
-  "22K81A72B7": { "sno": 53, "obj": "", "desc": "" },
-  "22K81A72B8": { "sno": 54, "obj": "", "desc": "" },
-  "22K81A72B9": { "sno": 55, "obj": "", "desc": "" },
-  "22K81A72C0": { "sno": 56, "obj": "", "desc": "" },
-  "22K81A72C1": { "sno": 57, "obj": "", "desc": "" },
-  "22K81A72C2": { "sno": 58, "obj": "", "desc": "" },
-  "22K81A72C3": { "sno": 59, "obj": "", "desc": "" },
-  "22K81A72C4": { "sno": 60, "obj": "", "desc": "" },
-  "22K81A72C5": { "sno": 61, "obj": "", "desc": "" },
-  "22K81A72C6": { "sno": 62, "obj": "", "desc": "" },
-  "22K81A72C7": { "sno": 63, "obj": "", "desc": "" },
-  "22K81A72C8": { "sno": 64, "obj": "", "desc": "" },
-  "23K85A7207": { "sno": 71, "obj": "", "desc": "" },
-  "23K85A7208": { "sno": 72, "obj": "", "desc": "" },
-  "23K85A7209": { "sno": 73, "obj": "", "desc": "" },
-  "23K85A7210": { "sno": 74, "obj": "", "desc": "" },
-  "23K85A7211": { "sno": 75, "obj": "", "desc": "" },
-  "23K85A7212": { "sno": 76, "obj": "", "desc": "" }
-}
+      "22K81A7265": {sno:1, obj:"", desc:""},
+      "22K81A7266": {sno:2, obj:"", desc:""},
+      "22K81A7267": {sno:3, obj:"", desc:""},
+      "22K81A7268": {sno:4, obj:"", desc:""},
+      "22K81A7269": {sno:5, obj:"", desc:""},
+      "22K81A7270": {sno:6, obj:"", desc:""},
+      "22K81A7271": {sno:7, obj:"", desc:""},
+      "22K81A7272": {sno:8, obj:"", desc:""},
+      "22K81A7273": {sno:9, obj:"", desc:""},
+      "22K81A7274": {sno:10, obj:"", desc:""},
+      "22K81A7275": {sno:11, obj:"", desc:""},
+      "22K81A7276": {sno:12, obj:"", desc:""},
+      "22K81A7277": {sno:13, obj:"", desc:""},
+      "22K81A7278": {sno:14, obj:"", desc:""},
+      "22K81A7279": {sno:15, obj:"", desc:""},
+      "22K81A7280": {sno:16, obj:"", desc:""},
+      "22K81A7281": {sno:17, obj:"", desc:""},
+      "22K81A7282": {sno:18, obj:"", desc:""},
+      "22K81A7283": {sno:19, obj:"", desc:""},
+      "22K81A7284": {sno:20, obj:"", desc:""},
+      "22K81A7285": {sno:21, obj:"", desc:""},
+      "22K81A7286": {sno:22, obj:"", desc:""},
+      "22K81A7287": {sno:23, obj:"", desc:""},
+      "22K81A7288": {sno:24, obj:"", desc:""},
+      "22K81A7289": {sno:25, obj:"", desc:""},
+      "22K81A7290": {sno:26, obj:"", desc:""},
+      "22K81A7291": {sno:27, obj:"", desc:""},
+      "22K81A7292": {sno:28, obj:"", desc:""},
+      "22K81A7293": {sno:29, obj:"", desc:""},
+      "22K81A7294": {sno:30, obj:"", desc:""},
+      "22K81A7295": {sno:31, obj:"", desc:""},
+      "22K81A7296": {sno:32, obj:"", desc:""},
+      "22K81A7297": {sno:33, obj:"", desc:""},
+      "22K81A7298": {sno:34, obj:"", desc:""},
+      "22K81A7299": {sno:35, obj:"", desc:""},
+      "22K81A72A0": {sno:36, obj:"", desc:""},
+      "22K81A72A1": {sno:37, obj:"", desc:""},
+      "22K81A72A2": {sno:38, obj:"", desc:""},
+      "22K81A72A3": {sno:39, obj:"", desc:""},
+      "22K81A72A4": {sno:40, obj:"", desc:""},
+      "22K81A72A5": {sno:41, obj:"", desc:""},
+      "22K81A72A6": {sno:42, obj:"", desc:""},
+      "22K81A72A7": {sno:43, obj:"", desc:""},
+      "22K81A72A8": {sno:44, obj:"", desc:""},
+      "22K81A72A9": {sno:45, obj:"", desc:""},
+      "22K81A72B0": {sno:46, obj:"", desc:""},
+      "22K81A72B1": {sno:47, obj:"", desc:""},
+      "22K81A72B2": {sno:48, obj:"", desc:""},
+      "22K81A72B3": {sno:49, obj:"", desc:""},
+      "22K81A72B4": {sno:50, obj:"", desc:""},
+      "22K81A72B5": {sno:51, obj:"", desc:""},
+      "22K81A72B6": {sno:52, obj:"", desc:""},
+      "22K81A72B7": {sno:53, obj:"", desc:""},
+      "22K81A72B8": {sno:54, obj:"", desc:""},
+      "22K81A72B9": {sno:55, obj:"", desc:""},
+      "22K81A72C0": {sno:56, obj:"", desc:""},
+      "22K81A72C1": {sno:57, obj:"", desc:""},
+      "22K81A72C2": {sno:58, obj:"", desc:""},
+      "22K81A72C3": {sno:59, obj:"", desc:""},
+      "22K81A72C4": {sno:60, obj:"", desc:""},
+      "22K81A72C5": {sno:61, obj:"", desc:""},
+      "22K81A72C6": {sno:62, obj:"", desc:""},
+      "22K81A72C7": {sno:63, obj:"", desc:""},
+      "22K81A72C8": {sno:64, obj:"", desc:""},
+      "23K85A7201": {sno:65, obj:"", desc:""},
+      "23K85A7202": {sno:66, obj:"", desc:""},
+      "23K85A7203": {sno:67, obj:"", desc:""},
+      "23K85A7204": {sno:68, obj:"", desc:""},
+      "23K85A7205": {sno:69, obj:"", desc:""},
+      "23K85A7206": {sno:70, obj:"", desc:""},
+      "23K85A7207": {sno:71, obj:"", desc:""},
+      "23K85A7208": {sno:72, obj:"", desc:""},
+      "23K85A7209": {sno:73, obj:"", desc:""},
+      "23K85A7210": {sno:74, obj:"", desc:""},
+      "23K85A7211": {sno:75, obj:"", desc:""},
+      "23K85A7212": {sno:76, obj:"", desc:""}
     };
 
     function showMarks() {
@@ -228,7 +232,7 @@
 
       if (regno && marksData[regno]) {
         const student = marksData[regno];
-        const total = student.obj + student.desc;
+        const total = (Number(student.obj) || 0) + (Number(student.desc) || 0);
 
         document.getElementById("sno").innerText = student.sno;
         document.getElementById("rno").innerText = regno;

@@ -1,1 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Marks Portal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #74ebd5, #ACB6E5);
+      text-align: center;
+      padding: 20px;
+      margin: 0;
+    }
+/* 🌟 Department Heading Styling */
+    h2 {
+      font-size: 26px;
+      font-weight: bold;
+      background: linear-gradient(90deg, #ff6a00, #ee0979, #00c6ff, #0072ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      animation: glow 2s infinite alternate, fadeInDown 2s;
+    }
 
+    /* Glowing effect */
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #fff, 0 0 20px #ff0080, 0 0 30px #00c6ff; }
+      to { text-shadow: 0 0 20px #fff, 0 0 30px #ff6a00, 0 0 40px #0072ff; }
+    }
+
+    h1 {
+      color: #2c3e50;
+      animation: fadeIn 2s ease-in-out;
+    }
+    select {
+      padding: 10px;
+      font-size: 16px;
+      margin: 20px;
+      border-radius: 8px;
+      border: 1px solid #3498db;
+    }
+    table {
+      width: 90%;
+      max-width: 700px;
+      margin: 20px auto;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      display: none;
+      animation: slideIn 1s ease-in-out;
+    }
+    th, td {
+      padding: 12px;
+      border: 1px solid #ddd;
+      text-align: center;
+      font-size: 16px;
+    }
+    th {
+      background: #3498db;
+      color: white;
+    }
+    tr:nth-child(even) {
+      background: #f9f9f9;
+    }
+    .high { background-color: #c8f7c5; } /* Green for >=25 */
+    .mid  { background-color: #ffeaa7; } /* Orange for 20-24 */
+    .low  { background-color: #fab1a0; } /* Red for <20 */
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+    @keyframes slideIn {
+      from {transform: translateY(20px); opacity: 0;}
+      to {transform: translateY(0); opacity: 1;}
+    }
+    /* Mobile Responsive */
+    @media (max-width: 600px) {
+      th, td {
+        padding: 8px;
+        font-size: 14px;
+      }
+      select {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+<h2>Department of Artificial Intelligence and Data Science</h2>
+  
+  <h1>📘 AID735PE-CRYPTOGRAPHY AND NETWORK SECURITY<h1>
+    <h1>MID-I EXAMINATION-SEPTEMBER'2025 Marks</h1>
+    <h1>Date of Exam: 10.09.2025</h1>
+
+  <label for="regno"><b>Select Register Number:</b></label>
+  <select id="regno" onchange="showMarks()">
+    <option value="">--Select--</option>
+  </select>
+
+  <table id="marksTable">
+    <tr>
+      <th>Serial No</th>
+      <th>Register No</th>
+      <th>Objective (10)</th>
+      <th>Descriptive (20)</th>
+      <th>Total (30)</th>
+    </tr>
+    <tr id="resultRow">
+      <td id="sno"></td>
+      <td id="rno"></td>
+      <td id="obj"></td>
+      <td id="desc"></td>
+      <td id="total"></td>
+    </tr>
+  </table>
+
+  <script>
+    // ✅ All 69 register numbers
+    const registerNumbers = [
+      "22K81A7201","22K81A7202","22K81A7203","22K81A7204","22K81A7205",
+      "22K81A7206","22K81A7207","22K81A7208","22K81A7209","22K81A7210",
+      "22K81A7211","22K81A7212","22K81A7213","22K81A7214","22K81A7215",
+      "22K81A7216","22K81A7217","22K81A7218","22K81A7219","22K81A7220",
+      "22K81A7221","22K81A7222","22K81A7224","22K81A7225","22K81A7226",
+      "22K81A7227","22K81A7228","22K81A7229","22K81A7230","22K81A7231",
+      "22K81A7232","22K81A7233","22K81A7234","22K81A7235","22K81A7236",
+      "22K81A7237","22K81A7238","22K81A7239","22K81A7240","22K81A7241",
+      "22K81A7242","22K81A7243","22K81A7244","22K81A7245","22K81A7246",
+      "22K81A7247","22K81A7248","22K81A7249","22K81A7250","22K81A7251",
+      "22K81A7252","22K81A7253","22K81A7254","22K81A7255","22K81A7256",
+      "22K81A7257","22K81A7258","22K81A7259","22K81A7260","22K81A7261",
+      "22K81A7262","22K81A7263","22K81A7264",
+      "23K85A7201","23K85A7203","23K85A7204","23K85A7205","23K85A7206"
+    ];
+
+    // ✅ Populate dropdown
+    const select = document.getElementById("regno");
+    registerNumbers.forEach(num => {
+      const option = document.createElement("option");
+      option.value = num;
+      option.textContent = num;
+      select.appendChild(option);
+    });
+
+    // ✅ Marks Data (copied from your previous code, with serial number auto-added)
+    const marksData = {
+      "22K81A7201": {sno:1, obj:10, desc:19},
+      "22K81A7202": {sno:2, obj:7.5, desc:15},
+      "22K81A7203": {sno:3, obj:9, desc:18},
+      "22K81A7204": {sno:4, obj:9, desc:20},
+      "22K81A7205": {sno:5, obj:8, desc:20},
+      "22K81A7206": {sno:6, obj:7.5, desc:17},
+      "22K81A7207": {sno:7, obj:7, desc:13},
+      "22K81A7208": {sno:8, obj:9.5, desc:19},
+      "22K81A7209": {sno:9, obj:9.5, desc:17},
+      "22K81A7210": {sno:10, obj:8.5, desc:20},
+      "22K81A7211": {sno:11, obj:4, desc:17},
+      "22K81A7212": {sno:12, obj:9.5, desc:19},
+      "22K81A7213": {sno:13, obj:9.5, desc:18},
+      "22K81A7214": {sno:14, obj:10, desc:19},
+      "22K81A7215": {sno:15, obj:9, desc:16},
+      "22K81A7216": {sno:16, obj:8, desc:18},
+      "22K81A7217": {sno:17, obj:8.5, desc:19},
+      "22K81A7218": {sno:18, obj:9.5, desc:14},
+      "22K81A7219": {sno:19, obj:9.5, desc:9},
+      "22K81A7220": {sno:20, obj:9.5, desc:12},
+      "22K81A7221": {sno:21, obj:9.5, desc:15},
+      "22K81A7222": {sno:22, obj:9.5, desc:19},
+      "22K81A7224": {sno:23, obj:9, desc:20},
+      "22K81A7225": {sno:24, obj:8.5, desc:5},
+      "22K81A7226": {sno:25, obj:10, desc:9},
+      "22K81A7227": {sno:26, obj:9.5, desc:19},
+      "22K81A7228": {sno:27, obj:10, desc:18},
+      "22K81A7229": {sno:28, obj:9.5, desc:17},
+      "22K81A7230": {sno:29, obj:9.5, desc:19},
+      "22K81A7231": {sno:30, obj:10, desc:19},
+      "22K81A7232": {sno:31, obj:10, desc:15},
+      "22K81A7233": {sno:32, obj:9.5, desc:12},
+      "22K81A7234": {sno:33, obj:9.5, desc:13},
+      "22K81A7235": {sno:34, obj:9.5, desc:20},
+      "22K81A7236": {sno:35, obj:10, desc:20},
+      "22K81A7237": {sno:36, obj:9.5, desc:18},
+      "22K81A7238": {sno:37, obj:10, desc:15},
+      "22K81A7239": {sno:38, obj:10, desc:19},
+      "22K81A7240": {sno:39, obj:10, desc:17},
+      "22K81A7241": {sno:40, obj:10, desc:20},
+      "22K81A7242": {sno:41, obj:10, desc:15},
+      "22K81A7243": {sno:42, obj:10, desc:19},
+      "22K81A7244": {sno:43, obj:10, desc:20},
+      "22K81A7245": {sno:44, obj:9.5, desc:20},
+      "22K81A7246": {sno:45, obj:9.5, desc:11},
+      "22K81A7247": {sno:46, obj:9.5, desc:16},
+      "22K81A7248": {sno:47, obj:9.5, desc:18},
+      "22K81A7249": {sno:48, obj:9.5, desc:17},
+      "22K81A7250": {sno:49, obj:10, desc:18},
+      "22K81A7251": {sno:50, obj:9.5, desc:18},
+      "22K81A7252": {sno:51, obj:9, desc:17},
+      "22K81A7253": {sno:52, obj:10, desc:17},
+      "22K81A7254": {sno:53, obj:10, desc:20},
+      "22K81A7255": {sno:54, obj:9.5, desc:20},
+      "22K81A7256": {sno:55, obj:9.5, desc:17},
+      "22K81A7257": {sno:56, obj:9.5, desc:10},
+      "22K81A7258": {sno:57, obj:9.5, desc:20},
+      "22K81A7259": {sno:58, obj:9.5, desc:20},
+      "22K81A7260": {sno:59, obj:9.5, desc:19},
+      "22K81A7261": {sno:60, obj:10, desc:17},
+      "22K81A7262": {sno:61, obj:8.5, desc:20},
+      "22K81A7263": {sno:62, obj:10, desc:20},
+      "22K81A7264": {sno:63, obj:9.5, desc:20},
+      "23K85A7201": {sno:64, obj:7.5, desc:18},
+      "23K85A7203": {sno:65, obj:9, desc:4},
+      "23K85A7204": {sno:66, obj:8, desc:19},
+      "23K85A7205": {sno:67, obj:7.5, desc:17},
+      "23K85A7206": {sno:68, obj:7.5, desc:12}
+    };
+
+    function showMarks() {
+      const regno = document.getElementById("regno").value;
+      const table = document.getElementById("marksTable");
+      const row = document.getElementById("resultRow");
+
+      if (regno && marksData[regno]) {
+        const student = marksData[regno];
+        const total = student.obj + student.desc;
+
+        document.getElementById("sno").innerText = student.sno;
+        document.getElementById("rno").innerText = regno;
+        document.getElementById("obj").innerText = student.obj;
+        document.getElementById("desc").innerText = student.desc;
+        document.getElementById("total").innerText = total;
+
+        // Color coding
+        row.className = "";
+        if (total >= 25) row.classList.add("high");
+        else if (total >= 20) row.classList.add("mid");
+        else row.classList.add("low");
+
+        table.style.display = "table";
+      } else {
+        table.style.display = "none";
+      }
+    }
+  </script>
+</body>
+</html>
